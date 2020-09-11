@@ -1,0 +1,17 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#header div {
+    display: inline-block;
+}
+
+#header {
+    margin: auto;
+    width: max-content;
+}
+
+#header h6 {
+    text-align: center;
+}

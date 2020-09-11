@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva Orden</title>
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <link rel="stylesheet" href="new-product.css">
+</head>
+
+<body>
+
+    <!-- Interface -->
+    <form class="p-4">
+        <div class="form-group">
+            <input type="text" id="codigo" class="form-control" placeholder="Código de producto" autofocus>
+        </div>
+        <div class="form-group">
+            <input type="text" id="description" class="form-control" placeholder="Descripcion">
+        </div>
+        <div class="form-group">
+            <input type="date" id="fecha" class="form-control" placeholder="Fecha" autofocus>
+        </div>
+        <div class="form-group">
+            <input type="number" id="cantidad" class="form-control" placeholder="Cantidad" autofocus>
+        </div>
+        <button class="btn btn-primary btn-block">
+        Guardar
+      </button>
+    </form>
+
+    <!-- Logic -->
+    <script>
+        const {
+            ipcRenderer
+        } = require('electron');
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            const codigoProduct = document.querySelector('#codigo').value;
+            const descProduct = document.querySelector('#description').value;
+            const fechaProduct = document.querySelector('#fecha').value;
+            const cantidadProduct = document.querySelector('#cantidad').value;
+
+            const newProduct = {
+                codigo: codigoProduct,
+                description: descProduct,
+                fecha: fechaProduct,
+                cantidad: cantidadProduct
+            };
+
+            ipcRenderer.send('product:new', newProduct);
+        });
+    </script>
+
+</body>
+
+</html>
